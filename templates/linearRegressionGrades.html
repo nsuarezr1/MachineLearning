@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helados Vendidos: Regresión Lineal</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesHelados.css') }}">
+</head>
+<body> 
+    <header>
+        <h1>Regresión Lineal: Predicción de Helados Vendidos</h1>
+        <p>Objetivo: Predecir la cantidad de helados vendidos en función de la temperatura.</p>
+        <p>Dataset: El archivo <strong>TemperaturayHelados.csv</strong> contiene datos de temperaturas y unidades vendidas.</p>
+    </header>
+    
+    <section>
+
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Gráfica de regresión">
+    </section>
+    
+    <section>
+        <form method="post">
+            <label for="temperatura">Temperatura (°C):</label>
+            <input type="number" name="temperatura" step="0.1" required>
+            <button type="submit">Predecir</button>
+        </form>
+    </section>
+    
+    {% if result is not none %}
+    <section>
+        <h2>Helados vendidos estimados: {{ result }}</h2>
+    </section>
+    {% endif %}
+</body>
+</html>
