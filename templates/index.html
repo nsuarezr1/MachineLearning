@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casos de Uso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/normalize.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@400;700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css')}}">
+</head>
+
+<body>
+    <section class="fondo">
+        <div class="contenido">
+            <h1>Introducción</h1>
+            <p>El machine learning Supervisado ha avanzado en diferentes áreas e industrias ya que este permite la
+                automatización de ciertas decisiones basadas en datos. Este informe analiza un caso de uso de detección
+                de fraude en transacciones bancarias se basa en la implementación de PayPal, donde se evidencia que esta
+                tecnología ha sido aplicada con resultados significativos.</p>
+        </div>
+    </section>
+
+    <main class="contenedor">
+
+        <section class="seccion1">
+            <h2>Detección de Fraude en Transacciones Bancarias</h2>
+            <div class="iconos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3l18 18" />
+                    <path d="M9 5h9a3 3 0 0 1 3 3v8a3 3 0 0 1 -.128 .87" />
+                    <path
+                        d="M18.87 18.872a3 3 0 0 1 -.87 .128h-12a3 3 0 0 1 -3 -3v-8c0 -1.352 .894 -2.495 2.124 -2.87" />
+                    <path d="M3 11l8 0" />
+                    <path d="M15 11l6 0" />
+                    <path d="M7 15l.01 0" />
+                    <path d="M11 15l2 0" />
+                </svg>
+            </div>
+            <h3>Descripción del Problema</h3>
+            <p>Las instituciones financieras enfrentan millones de transacciones diarias, algunas de las cuales
+                pueden ser fraudulentas. Detectarlas a tiempo es crucial para reducir pérdidas económicas y mejorar
+                la seguridad de los clientes. <br><br>
+            </p>
+            <h3>Algoritmos Utilizados</h3>
+            <ul>
+                <li><strong>Regresión Logística:</strong> Clasifica transacciones como fraudulentas o legítimas</li>
+                <li><strong>Random Forest:</strong> Detecta patrones no lineales en grandes volúmenes de datos</li>
+                <li><strong>Redes Neuronales</strong> Analiza comportamientos complejos y anomalías en tiempo real
+                </li>
+            </ul>
+        </section>
+
+
+
+        <section class="ejemplo">
+            <h2>Ejemplo de implementación</h2>
+            <p>La empresa PayPal implementa Machine Learning Supervisado para detectar fraudes en pagos en línea. Su
+                modelo analiza factores como ubicación, historial de compras y monto de la transacción para prevenir
+                fraudes antes de que ocurran.</p>
+            <div class="iconos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"
+                    stroke-width="1.5">
+                    <path
+                        d="M10 13l2.5 0c2.5 0 5 -2.5 5 -5c0 -3 -1.9 -5 -5 -5h-5.5c-.5 0 -1 .5 -1 1l-2 14c0 .5 .5 1 1 1h2.8l1.2 -5c.1 -.6 .4 -1 1 -1zm7.5 -5.8c1.7 1 2.5 2.8 2.5 4.8c0 2.5 -2.5 4.5 -5 4.5h-2.6l-.6 3.6a1 1 0 0 1 -1 .8l-2.7 0a.5 .5 0 0 1 -.5 -.6l.2 -1.4">
+                    </path>
+                </svg> </div>
+
+            <h3>Beneficios Obtenidos</h3>
+            <ul>
+                <li>Reducción del fraude en transacciones en línea</li>
+                <li>Mayor seguridad para los clientes</li>
+                <li>Disminución de pérdidas económicas</li>
+            </ul>
+        </section>
+
+
+
+        <section >
+            <h2>Conclusiones</h2>
+            <p>El Machine Learning Supervisado permite mejorar la seguridad financiera y la eficiencia en la
+                estimación
+                de precios inmobiliarios. A través de esta investigación y su implementación en Flask, se demuestra
+                su
+                aplicabilidad en diversas industrias.</p>
+        </section>
+
+        <section >
+            <h3>Referencias</h3>
+            <p>
+                Chandola, V., Banerjee, A., & Kumar, V. (2009). Anomaly detection: A survey. ACM Computing Surveys,
+                41(3), 1-58. <br>
+                PayPal. (2023). Security and Fraud Prevention. Recuperado de www.paypal.com
+            </p>
+        </section>
+    </main>
+    <footer>Todos los derechos Reservados; Amy Gelves, Danna Gonzalez, Nicolas Suarez</footer>
+</body>
+
+</html>
