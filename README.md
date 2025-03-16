@@ -1,5 +1,5 @@
 # MachineLearning
 
-**Amy Gelves**
-**Danna Gonzalez**
-**Nicolas Suarez**
+**Amy Gelves**,
+**Danna Gonzalez**,
+**Nicolas Suarez**,
