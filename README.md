@@ -1,4 +1,4 @@
-# MachineLearning
+<h1 align="center"> Machinne Learning </h1>
 
 En la materia de Machine Learning, estaremos trabajando en el desarrollo de páginas web para la implementación de modelos de aprendizaje automatizado. 
 Además, utilizaremos GitHub como plataforma principal para gestionar nuestros repositorios, permitiendo la colaboración, el control de versiones y 

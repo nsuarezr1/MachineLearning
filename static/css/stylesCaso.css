@@ -1,0 +1,146 @@
+:root {
+    --primario: #b2b2f6;
+}
+
+/* GLOBALES */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+   
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Times New Roman", serif;
+    text-align: center; 
+    background-color: #cbeaf4;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto 4rem auto;
+}
+
+.introduccion {
+    text-align: center;
+    max-width: 80%;
+    margin: 2rem auto;
+}
+
+/*  Tipografía  */
+h1 {
+    font-size: 3.8rem;
+    color: #996b98;
+    font-family: "Times New Roman", serif;
+}
+
+h2 {
+    font-size: 3.2rem;
+    font-family: "Times New Roman", serif;
+}
+
+h3 {
+    font-size: 2rem;
+    font-family: "Times New Roman", serif;
+}
+
+p {
+    text-align: justify; 
+    margin: 0 auto; 
+    width: 80%; 
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+.fondo {
+    background-image: url(../img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.fondo::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(235, 154, 206, 0.5); /* Capa de sobreposición */
+}
+
+.contenido {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1;
+}
+
+.contenido h1,
+.contenido p {
+    color: white;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.contenedor {
+    max-width: 100rem;
+    margin: 0 auto;
+    box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, 0.48);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.iconos{
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.seccion1, .ejemplo{
+    text-align: center;
+    margin: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+iframe {
+    border: 5px solid #9981c9;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(246, 244, 250);
+}
+
+footer {
+    display: flex;
+    padding: 2.5rem;
+    background-color: rgb(247, 180, 241);
+    justify-content: center;
+}
+
+

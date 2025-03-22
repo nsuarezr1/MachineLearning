@@ -28,12 +28,12 @@ def exampleHTML():
 @app.route("/linearRegression/", methods=["GET", "POST"])
 def calculateGrade():
     calculateResult = None
-
     plot_url = linearRegression601N.generar_grafica()
-
     if request.method == "POST":
-
         temperatura = float(request.form["temperatura"])
         calculateResult = linearRegression601N.calcularHelados(temperatura)
-
     return render_template("linearRegressionGrades.html", result=calculateResult, plot_url=plot_url)
+
+@app.route("/linearLogistica/")
+def logistic():
+    return render_template("/linearLogistica.html")
