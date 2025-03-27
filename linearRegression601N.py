@@ -37,6 +37,8 @@ def generar_grafica():
     img.seek(0)
     grafica_url = base64.b64encode(img.getvalue()).decode()
     
+    
+    
     plt.close()
     return grafica_url
 
