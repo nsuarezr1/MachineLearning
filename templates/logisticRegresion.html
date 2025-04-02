@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clasificación de Imágenes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/stylesLogistic.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ dataset_info.titulo }}</h1>
+            <p><strong>Objetivo:</strong> {{ dataset_info.objetivo }}</p>
+            <p>{{ dataset_info.descripcion }}</p>
+        </header>
+        <section class="prediccion">
+            <h2>Realizar Predicción</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="pixeles">Pixeles:</label>
+                    <input type="number" step="any" id="pixeles" name="pixeles" required>
+                </div>
+                <div class="form-group">
+                    <label for="colores">Colores:</label>
+                    <input type="number" step="any" id="colores" name="colores" required>
+                </div>
+                <div class="form-group">
+                    <label for="contraste">Contraste:</label>
+                    <input type="number" step="any" id="contraste" name="contraste" required>
+                </div>
+                <div class="form-group">
+                    <label for="bordes">Bordes:</label>
+                    <input type="number" step="any" id="bordes" name="bordes" required>
+                </div>
+                <button type="submit">Predecir</button>
+            </form>
+            {% if resultado %}
+                <div class="resultado">
+                    <h3>Resultado de la Predicción: {{ resultado }}</h3>
+                </div>
+            {% endif %}
+        </section>
+        <section class="evaluacion">
+            <h2>Evaluación del Modelo</h2>
+            <ul class="metricas">
+                <li><strong>Exactitud:</strong> {{ metricas.exactitud }}</li>
+                <li><strong>Precisión:</strong> {{ metricas.precision }}</li>
+                <li><strong>Sensibilidad (Recall):</strong> {{ metricas.sensibilidad }}</li>
+            </ul>
+            <h3>Matriz de Confusión</h3>
+            <table>
+                {% for fila in metricas.matriz_confusion %}
+                <tr>
+                    {% for valor in fila %}
+                    <td>{{ valor }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </div>
+</body>
+</html>
