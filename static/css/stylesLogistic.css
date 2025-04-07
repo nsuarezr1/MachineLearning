@@ -5,6 +5,15 @@ body {
     padding: 0;
 }
 
+.navbar {
+    background-color: lightslategray;
+    font-size: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+
 .container {
     max-width: 800px;
     margin: 30px auto;

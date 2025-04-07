@@ -2,21 +2,41 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Mental - Regresión Logística</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/normalize.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/stylesCaso.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css')}}">
+
 
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Inicio</a>
+
+        <!-- Menú desplegable -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Ejercicios▼</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('CasoUso') }}">Casos de Uso</a>
+                <a href="{{ url_for('RegresionLineal') }}">Regresión Lineal</a>
+                <a href="{{ url_for('CasoUsoRegresionLogistica') }}">Caso de Uso Regresión Logística</a>
+                <a href="{{ url_for('RegresionLogistica') }}">Regresión Logística</a>
+            </div>
+        </div>
+    </div>
     <h1>Regresión Logística: Conceptos y Casos de Uso</h1>
     <section class="introduccion">
         <p>
-            La regresión logística es un modelo estadístico utilizado para la clasificación de datos en dos o más categorías. 
-            A diferencia de la regresión lineal, que predice valores continuos, la regresión logística calcula la probabilidad 
-            de que una observación pertenezca a una determinada clase. Se utiliza ampliamente en problemas de clasificación binaria, 
+            La regresión logística es un modelo estadístico utilizado para la clasificación de datos en dos o más
+            categorías.
+            A diferencia de la regresión lineal, que predice valores continuos, la regresión logística calcula la
+            probabilidad
+            de que una observación pertenezca a una determinada clase. Se utiliza ampliamente en problemas de
+            clasificación binaria,
             como diagnóstico médico, detección de fraudes y segmentación de clientes en marketing.
         </p>
     </section>
