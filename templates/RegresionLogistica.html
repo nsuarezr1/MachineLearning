@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <title>Clasificación de Imágenes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/stylesLogistic.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css')}}">
+
 </head>
 <body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Inicio</a>
+        <!-- Menú desplegable -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Ejercicios▼</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('CasoUso') }}">Casos de Uso</a>
+                <a href="{{ url_for('RegresionLineal') }}">Regresión Lineal</a>
+                <a href="{{ url_for('CasoUsoRegresionLogistica') }}">Caso de Uso Regresión Logística</a>
+                <a href="{{ url_for('RegresionLogistica') }}">Regresión Logística</a>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <header>
             <h1>{{ dataset_info.titulo }}</h1>

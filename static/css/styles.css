@@ -1,108 +1,161 @@
 :root {
     --primario: #b2b2f6;
-    
-    }
-    
-    /* GLOBALES */
-    html {
-        font-size: 62.5%;
-        box-sizing: border-box;
-        /*  Hack boxmodel  */
-    }
-    
-    *,
-    *:before,
-    *:after {
-        box-sizing: inherit;
-    }
-    
-    
-    body {
-        font-size: 16px;
-        font-family: "Noto Sans", sans-serif;
-    }
-    
-    .contenedor {
-        max-width: 120rem;
-        margin: 0 auto 4rem auto;
-    
-    
-    }
-    
-    /*  Tipografia  */
-    h1 {
-        font-size: 3.8rem;
-    }
-    
-    h2 {
-        font-size: 3.2rem;
-    }
-    
-    h3 {
-        font-size: 2rem;
-    }
-    
-    h1,
-    h2,
-    h3 {
-        text-align: center;
-    }
-    
-    .fondo {
-        background-image: url(../img/fondo.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 45rem;
-        position: relative;
-        margin-bottom: 2rem;
-    
-    }
-    
-    .contenido {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(1, 1, 1, 0.75);
-    
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .contenido h1,
-    .contenido p {
-        color: white;
-        padding-left: 25%;
-        padding-right: 25%;
-    }
-    .contenedor {
-        max-width: 100rem;
-        margin: 0 auto;
-        box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, 0.48);
-        background-color: var(--blanco);
-        padding: 2rem;
-        border-radius: 1rem;
-    }
-    
-    .iconos{
-        display: flex;
-        height: 15rem;
-        width: 15rem;
-        background-color: var(--primario);
-        border-radius: 50%;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .seccion1, .ejemplo{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    footer {
-        display: flex;
-        padding: 2.5rem;
-        background-color: rgb(75, 154, 245);
-        justify-content: center;
-    }
+
+}
+
+/* GLOBALES */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    /*  Hack boxmodel  */
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+body {
+    font-size: 16px;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto 4rem auto;
+}
+
+/*  Tipografia  */
+h1 {
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a, .dropdown-btn {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.navbar a:hover, .dropdown:hover .dropdown-btn {
+    background-color: #575757;
+}
+
+.fondo {
+    background-image: url(../img/fondo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    position: relative;
+    margin-bottom: 2rem;
+
+}
+
+.contenido {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 1, 1, 0.75);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido h1,
+.contenido p {
+    color: white;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.contenedor {
+    max-width: 100rem;
+    margin: 0 auto;
+    box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, 0.48);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.iconos {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.seccion1,
+.ejemplo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    padding: 2.5rem;
+    background-color: rgb(75, 154, 245);
+    justify-content: center;
+}

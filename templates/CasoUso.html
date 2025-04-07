@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casos de Uso</title>
@@ -12,10 +13,25 @@
         href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@400;700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/stylesCaso.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css')}}">
 </head>
 
 <body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Inicio</a>
+
+        <!-- Menú desplegable -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Ejercicios▼</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('CasoUso') }}">Casos de Uso</a>
+                <a href="{{ url_for('RegresionLineal') }}">Regresión Lineal</a>
+                <a href="{{ url_for('CasoUsoRegresionLogistica') }}">Caso de Uso Regresión Logística</a>
+                <a href="{{ url_for('RegresionLogistica') }}">Regresión Logística</a>
+            </div>
+        </div>
+    </div>
+
     <section class="fondo">
         <div class="contenido">
             <h1>Introducción</h1>

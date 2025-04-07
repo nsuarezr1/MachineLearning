@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request
 from datetime import datetime
 import regex as re
-import linearRegression601N
-import logisticRegression
+import RegresionLineal601N
+import RegresionLogistica601N
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "Hello Flask"
+def home():
+    return render_template("home.html")
 
 @app.route("/hello/<name>")
 def hello_there(name):
@@ -22,26 +22,26 @@ def hello_there(name):
     content = f"Hello there, {clean_name} | Hour: {now}"
     return content
 
-@app.route("/exampleHTML/")
-def exampleHTML():
-    return render_template("index.html")
+@app.route("/CasoUso/")
+def CasoUso():
+    return render_template("CasoUso.html")
 
-@app.route("/linearRegression/", methods=["GET", "POST"])
-def calculateGrade():
+@app.route("/RegresionLineal/", methods=["GET", "POST"])
+def RegresionLineal():
     calculateResult = None
-    plot_url = linearRegression601N.generar_grafica()
+    plot_url = RegresionLineal601N.generar_grafica()
     if request.method == "POST":
         temperatura = float(request.form["temperatura"])
-        calculateResult = linearRegression601N.calcularHelados(temperatura)
-    return render_template("linearRegressionGrades.html", result=calculateResult, plot_url=plot_url)
+        calculateResult = RegresionLineal601N.calcularHelados(temperatura)
+    return render_template("RegresionLineal.html", result=calculateResult, plot_url=plot_url)
 
-@app.route("/linearLogistica/")
-def logistic():
-    return render_template("/linearLogistica.html")
+@app.route("/CasoUsoRegresionLogistica")
+def CasoUsoRegresionLogistica():
+    return render_template("CasoUsoRegresionLogistica.html")
 
 
-@app.route('/regresionLogistica', methods=['GET', 'POST'])
-def index():
+@app.route('/RegresionLogistica', methods=['GET', 'POST'])
+def RegresionLogistica():
     resultado = None
     if request.method == 'POST':
         # Recuperar los datos del formulario (ahora se permiten decimales)
@@ -50,13 +50,13 @@ def index():
         contraste = float(request.form['contraste'])
         bordes = float(request.form['bordes'])
         # Realizar la predicción
-        pred = logisticRegression.predecir_nuevo(pixeles, colores, contraste, bordes)
+        pred = RegresionLogistica601N.predecir_nuevo(pixeles, colores, contraste, bordes)
         resultado = "Contiene objeto" if pred == 1 else "No contiene objeto"
-    metricas = logisticRegression.obtener_metricas()
+    metricas = RegresionLogistica601N.obtener_metricas()
     # Información del dataset para mostrar en la interfaz
     dataset_info = {
         'titulo': 'Conjunto de Datos de Imágenes',
         'objetivo': 'Determinar si una imagen contiene un objeto',
         'descripcion': 'Este conjunto de datos contiene 100 registros con las variables: pixeles, colores, contraste y bordes.'
     }
-    return render_template('logisticRegresion.html', resultado=resultado, metricas=metricas, dataset_info=dataset_info)
+    return render_template('RegresionLogistica.html', resultado=resultado, metricas=metricas, dataset_info=dataset_info)
