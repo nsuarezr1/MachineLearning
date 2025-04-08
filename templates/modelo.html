@@ -2,7 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    
+    <a href="/modelos" class="volver-btn">← Volver a Modelos</a>
+    <div class="contenido-modelo">
     <title>{{ model.Titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/normalize.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/stylesModelo.css')}}">
 </head>
 <body>
     <h1>{{ model.Titulo }}</h1>
@@ -10,6 +15,6 @@
     <img src="{{ model.urlImagen }}" alt="{{ model.Titulo }}" style="max-width: 600px;">
     <p><strong>Fuente:</strong> {{ model.referencia }}</p>
     <br>
-    <a href="/modelos">Volver a la lista de modelos</a>
+</div>
 </body>
 </html>
