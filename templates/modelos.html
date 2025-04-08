@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modelos Disponibles</title>
+</head>
+<body>
+    <h1>Modelos Disponibles</h1>
+    <ul>
+        {% for model in models %}
+            <li><a href="{{ url_for('model_page', model_name=model.Titulo) }}">{{ model.Titulo }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

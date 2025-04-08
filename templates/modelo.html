@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ model.Titulo }}</title>
+</head>
+<body>
+    <h1>{{ model.Titulo }}</h1>
+    <p>{{ model.Descripcion }}</p>
+    <img src="{{ model.urlImagen }}" alt="{{ model.Titulo }}" style="max-width: 600px;">
+    <p><strong>Fuente:</strong> {{ model.referencia }}</p>
+    <br>
+    <a href="/modelos">Volver a la lista de modelos</a>
+</body>
+</html>
