@@ -3,7 +3,7 @@ from datetime import datetime
 import regex as re
 import RegresionLineal601N
 import RegresionLogistica601N
-
+from db import get_models, get_model_by_name
 app = Flask(__name__)
 
 @app.route("/")
@@ -60,3 +60,18 @@ def RegresionLogistica():
         'descripcion': 'Este conjunto de datos contiene 100 registros con las variables: pixeles, colores, contraste y bordes.'
     }
     return render_template('RegresionLogistica.html', resultado=resultado, metricas=metricas, dataset_info=dataset_info)
+
+@app.route('/modelos')
+def modelos():
+    models = get_models()  
+    return render_template('modelos.html', models=models)
+
+@app.route('/modelos/<model_name>')
+def model_page(model_name):
+    model = get_model_by_name(model_name)
+    if not model:
+        return "Model Not Found", 404
+    return render_template('modelo.html', model=model)
+
+if __name__ == '__main__':
+    app.run(debug=True)
