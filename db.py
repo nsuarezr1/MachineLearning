@@ -2,6 +2,7 @@ import os
 import pyodbc
 
 
+
 def get_connection():
     conn_str = (
         f"DRIVER={{ODBC Driver 17 for SQL Server}};"

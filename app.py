@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime
+import joblib
+import pandas as pd
 import regex as re
 import RegresionLineal601N
 import RegresionLogistica601N
@@ -72,6 +74,63 @@ def model_page(model_name):
     if not model:
         return "Model Not Found", 404
     return render_template('modelo.html', model=model)
+
+@app.route('/ArbolDecision', methods=['GET', 'POST'])
+def ArbolDecision():
+    resultado = None
+    modelo_arbol = None  # Inicializar modelo_arbol dentro de la función
+    try:
+        modelo_arbol = joblib.load('modelo_arbol_decision.joblib')  # Ajusta la ruta si es necesario
+        print("Modelo de Árbol de Decisión cargado exitosamente en la ruta.")
+    except FileNotFoundError:
+        resultado = "Error: No se encontró el archivo del modelo de Árbol de Decisión."
+        print("Error: No se encontró el archivo del modelo de Árbol de Decisión en la ruta.")
+    except Exception as e:
+        resultado = f"Error al cargar el modelo de Árbol de Decisión: {e}"
+        print(f"Error al cargar el modelo de Árbol de Decisión en la ruta: {e}")
+
+    if request.method == 'POST':
+        if modelo_arbol is None and resultado is None:
+            resultado = "Error: El modelo de Árbol de Decisión no está cargado."
+        elif modelo_arbol is not None:
+            try:
+                # Recuperar los datos del formulario
+                edad = int(request.form['edad'])
+                ingreso = float(request.form['ingreso'])
+                ubicacion = request.form['ubicacion']
+
+                # Crear un DataFrame con los datos ingresados y realizar one-hot encoding
+                nuevo_dato = pd.DataFrame({'edad': [edad], 'ingreso': [ingreso], 'ubicacion': [ubicacion]})
+                nuevo_dato_encoded = pd.get_dummies(nuevo_dato, columns=['ubicacion'], drop_first=True)
+
+                # Asegurarse de que las columnas coincidan con las del modelo entrenado
+                columnas_esperadas = ['edad', 'ingreso', 'ubicacion_Rural', 'ubicacion_Suburbana', 'ubicacion_Urbana']
+                for col in columnas_esperadas:
+                    if col not in nuevo_dato_encoded.columns:
+                        nuevo_dato_encoded[col] = 0
+                nuevo_dato_encoded = nuevo_dato_encoded[columnas_esperadas] # Asegurar el orden
+
+                # Realizar la predicción
+                prediccion = modelo_arbol.predict(nuevo_dato_encoded)[0]
+                resultado = "Compra" if prediccion == 1 else "No Compra"
+
+            except ValueError:
+                resultado = "Error: Por favor, ingresa valores numéricos válidos para edad e ingreso."
+            except KeyError as e:
+                resultado = f"Error: Falta el campo '{e}' en el formulario."
+            except Exception as e:
+                resultado = f"Ocurrió un error durante la predicción: {e}"
+
+    # Información del dataset y el modelo para mostrar en la interfaz (opcional)
+    modelo_info = {
+        'nombre': 'Árbol de Decisión',
+        'objetivo': 'Predecir si un cliente comprará un producto',
+        'variables_entrada': ['edad', 'ingreso', 'ubicacion'],
+        'variable_salida': 'Compra (1) / No Compra (0)'
+    }
+
+    return render_template('ArbolDecision.html', resultado=resultado, modelo_info=modelo_info)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
