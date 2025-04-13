@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Compra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/normalize.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/ArbolDecision.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Predicción de Compra de Cliente</h1>
+
+        {% if modelo_info %}
+        <div class="model-info">
+            <h2>Información del Modelo</h2>
+            <p><strong>Modelo:</strong> {{ modelo_info.nombre }}</p>
+            <p><strong>Objetivo:</strong> {{ modelo_info.objetivo }}</p>
+            <p><strong>Variables de Entrada:</strong> {{ ', '.join(modelo_info.variables_entrada) }}</p>
+            <p><strong>Variable de Salida:</strong> {{ modelo_info.variable_salida }}</p>
+        </div>
+        {% endif %}
+
+        <form method="POST" class="prediction-form">
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" required>
+            </div>
+            <div class="form-group">
+                <label for="ingreso">Ingreso Mensual:</label>
+                <input type="number" step="any" id="ingreso" name="ingreso" required>
+            </div>
+            <div class="form-group">
+                <label for="ubicacion">Ubicación:</label>
+                <select id="ubicacion" name="ubicacion" required>
+                    <option value="Urbana">Urbana</option>
+                    <option value="Rural">Rural</option>
+                    <option value="Suburbana">Suburbana</option>
+                </select>
+            </div>
+            <button type="submit" class="predict-button">Predecir</button>
+        </form>
+
+        {% if resultado %}
+        <div class="prediction-result">
+            <h2>Resultado de la Predicción:</h2>
+            <p class="result-text">{{ resultado }}</p>
+        </div>
+        {% endif %}
+        {% if resultados is not none and not resultados.empty %}
+
+    <div class="results-table">
+        <h2>Resultados Recientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Edad</th>
+                    <th>Ingreso</th>
+                    <th>Ubicación</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in resultados.values %}
+                <tr>
+                    <td>{{ fila[0] }}</td>
+                    <td>{{ fila[1] }}</td>
+                    <td>{{ fila[2] }}</td>
+                    <td>{{ fila[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('descargar_csv') }}" method="get">
+            <button type="submit">Exportar a CSV</button>
+        </form>
+        <form method="POST">
+            <button type="submit" name="limpiar" class="predict-button">
+                Limpiar resultados
+            </button>
+        </form>
+    </div>
+    {% endif %}  
+    </div>
+</body>
+</html>

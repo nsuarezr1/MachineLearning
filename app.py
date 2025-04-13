@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file, redirect, url_for
 from datetime import datetime
+import joblib
+import pandas as pd
 import regex as re
 import RegresionLineal601N
 import RegresionLogistica601N
@@ -72,6 +74,76 @@ def model_page(model_name):
     if not model:
         return "Model Not Found", 404
     return render_template('modelo.html', model=model)
+
+resultados_df = pd.DataFrame(columns=['edad', 'ingreso', 'ubicacion', 'resultado'])
+
+@app.route('/ArbolDecision', methods=['GET', 'POST'])
+def ArbolDecision():
+    global resultados_df
+    resultado = None
+    modelo_arbol = None
+
+    try:
+        modelo_arbol = joblib.load('modelo_arbol_decision.joblib')
+    except FileNotFoundError:
+        resultado = "Error: No se encontró el archivo del modelo de Árbol de Decisión."
+    except Exception as e:
+        resultado = f"Error al cargar el modelo de Árbol de Decisión: {e}"
+
+    if request.method == 'POST':
+        if 'limpiar' in request.form:
+
+            resultado = None
+            resultados_df = pd.DataFrame()  
+        else:
+
+            if modelo_arbol is not None:
+                try:
+                    edad = int(request.form['edad'])
+                    ingreso = float(request.form['ingreso'])
+                    ubicacion = request.form['ubicacion']
+
+                    nuevo_dato = pd.DataFrame({'edad': [edad], 'ingreso': [ingreso], 'ubicacion': [ubicacion]})
+                    nuevo_dato_encoded = pd.get_dummies(nuevo_dato, columns=['ubicacion'], drop_first=True)
+
+                    columnas_esperadas = ['edad', 'ingreso', 'ubicacion_Rural', 'ubicacion_Suburbana', 'ubicacion_Urbana']
+                    for col in columnas_esperadas:
+                        if col not in nuevo_dato_encoded.columns:
+                            nuevo_dato_encoded[col] = 0
+                    nuevo_dato_encoded = nuevo_dato_encoded[columnas_esperadas]
+
+                    prediccion = modelo_arbol.predict(nuevo_dato_encoded)[0]
+                    resultado_texto = "Compra" if prediccion == 1 else "No Compra"
+                    resultado = resultado_texto
+
+                    resultados_df = pd.concat([
+                        resultados_df,
+                        pd.DataFrame([{
+                            'edad': edad,
+                            'ingreso': ingreso,
+                            'ubicacion': ubicacion,
+                            'resultado': resultado_texto
+                        }])
+                    ], ignore_index=True)
+
+                except Exception as e:
+                    resultado = f"Ocurrió un error durante la predicción: {e}"
+
+    modelo_info = {
+        'nombre': 'Árbol de Decisión',
+        'objetivo': 'Predecir si un cliente comprará un producto',
+        'variables_entrada': ['edad', 'ingreso', 'ubicacion'],
+        'variable_salida': 'Compra (1) / No Compra (0)'
+    }
+
+    return render_template('ArbolDecision.html', resultado=resultado, modelo_info=modelo_info, resultados=resultados_df)
+
+@app.route('/descargar_csv')
+def descargar_csv():
+    global resultados_df
+    csv_path = 'resultados.csv'
+    resultados_df.to_csv(csv_path, index=False)
+    return send_file(csv_path, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)

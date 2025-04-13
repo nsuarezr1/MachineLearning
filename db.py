@@ -2,6 +2,7 @@ import os
 import pytds
 
 
+
 def get_connection():
     server = os.getenv("DB_SERVER", "").strip()
     database = os.getenv("DB_NAME", "").strip()
