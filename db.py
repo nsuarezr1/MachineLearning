@@ -2,7 +2,6 @@ import os
 import pytds
 
 
-
 def get_connection():
     server = os.getenv("DB_SERVER", "").strip()
     database = os.getenv("DB_NAME", "").strip()
@@ -40,4 +39,3 @@ def get_model_by_name(model_name):
                     "referencia": row[2],
                     "urlImagen": row[3]
                 }
-
