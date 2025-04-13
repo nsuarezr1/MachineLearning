@@ -39,4 +39,3 @@ def get_model_by_name(model_name):
                     "referencia": row[2],
                     "urlImagen": row[3]
                 }
-
